@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import EnhancedNotification, { notify } from './common/Notification';
 import { LoadingScreen } from './common/Loading';
 import { DevModeSwitch } from './common/devModeSwitch';

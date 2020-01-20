@@ -12,24 +12,40 @@ const errorHelper = (error, variant) => {
   if (error.response.statusCode === 401) {
     if (variant === "login")
       return notify("Invalid Credentials");
+
+    if (variant === "register")
+      return notify("Issues in Registeration process completion");
     notify("You may have been logged out");
     logout();
     return false;
+
   }
   if (error.response.data.statusCode === 401) {
     if (variant === "login")
       return notify("Invalid Credentials");
+
+    if(variant === "register")
+      return notify("Issues in  Registeration");
+
     notify("You may have been logged out");
     logout();
     return false;
   }
+
+
   if (error.response.status === 401) {
     if (variant === "login")
       return notify("Invalid Credentials");
+
+    if (variant === "register")
+      return notify("Issues in Registeration completion");
+
     notify("You may have been logged out");
     logout();
     return false;
   }
+
+
   if (error.response.data.message !== "") {
     notify(error.response.data.message);
     return false;
@@ -54,10 +70,18 @@ class API {
   }
 
   login = (data, callback) => {
-    axiosInstance.post('login', data).then(response => {
+    axiosInstance.post('user/login', data).then(response => {
       return performCallback(callback, true)
     }).catch(error => {
-      errorHelper(error, "login")
+      errorHelper(error, "login");
+    })
+  }
+
+  registerUser = (data,callback) =>{
+    axiosInstance.post('user/register' ,data).then(res =>{
+       callback(res);
+    }).catch(error => {
+      errorHelper(error, "register");
     })
   }
 

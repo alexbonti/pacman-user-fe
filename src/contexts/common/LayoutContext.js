@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { createContext, useState, useEffect } from 'react';
 import { LayoutConfig } from 'configurations';
 export const LayoutContext = createContext();

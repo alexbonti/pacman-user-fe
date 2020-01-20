@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { API, socketAuthCallback } from 'helpers';

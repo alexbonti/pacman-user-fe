@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { Image } from 'components';

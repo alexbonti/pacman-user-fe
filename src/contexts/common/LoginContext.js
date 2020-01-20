@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /***
  *  Created by Sanchit Dang
  ***/
@@ -49,6 +50,7 @@ export const LoginProvider = props => {
       _setLoginStatus(false);
     }
   };
+  
   const logoutUser = async (init) => {
     if (init instanceof Function) {
       init();

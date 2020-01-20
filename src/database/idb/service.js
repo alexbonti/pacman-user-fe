@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import { openDB, deleteDB, wrap, unwrap } from 'idb/with-async-ittr.js';
 var CONFIG = require('./config.json');
 const DBTitle = (process.env.REACT_APP_IDB_DATABASE_NAME === undefined ?

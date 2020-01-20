@@ -1,10 +1,14 @@
+/* eslint-disable linebreak-style */
 /***
  *  Created by Sanchit Dang
  ***/
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { TextField, makeStyles, Typography, Button, Box, Grid, Paper } from '@material-ui/core';
 import { notify } from 'components';
+import { DevModeConfig } from 'configurations';
+import { LoginContext } from 'contexts'; 
+import { API } from 'helpers';
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,7 +47,21 @@ export const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  
+  //Function for the Registeration Logic
   const register = () => {
+    let registerationDetails = {
+      firstName: firstName,
+      lastName : lastName,
+      emailId : emailId,
+      password : password
+    };
+
+    API.registerUser(registerationDetails, function(data) {
+      notify("Registeration Successful");
+      console.log(data.accessToken);
+
+    });
   };
   const validationCheck = () => {
     if (emailId.length < 0 || password.length < 0 || confirmPassword.length < 0 || firstName.length < 0 || lastName.length < 0
@@ -95,7 +113,7 @@ export const Register = () => {
           </Box>
         </Grid>
       </Grid>
-    </div >
+    </div>
   );
   return content;
 }
