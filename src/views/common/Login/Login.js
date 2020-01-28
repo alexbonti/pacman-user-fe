@@ -59,7 +59,11 @@ export const Login = () => {
         emailId: (devMode ? (DevModeConfig.devDetails !== undefined ? DevModeConfig.devDetails.user : '') : emailId),
         password: (devMode ? (DevModeConfig.devDetails !== undefined ? DevModeConfig.devDetails.password : '') : password)
       };
-      API.login(details, setLoginStatus);
+      
+      API.login(details, (res ,status) =>{
+        setLoginStatus(status);
+        setAccessToken(res.data.data.accessToken);
+      });
     }
   };
 

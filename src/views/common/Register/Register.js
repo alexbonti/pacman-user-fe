@@ -59,9 +59,8 @@ export const Register = () => {
 
     API.registerUser(registerationDetails, function(data) {
       notify("Registeration Successful");
-      console.log(data.accessToken);
-
-    });
+      console.log(data);
+     });
   };
   const validationCheck = () => {
     if (emailId.length < 0 || password.length < 0 || confirmPassword.length < 0 || firstName.length < 0 || lastName.length < 0

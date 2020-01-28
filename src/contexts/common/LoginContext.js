@@ -43,6 +43,7 @@ export const LoginProvider = props => {
     if (data === true) {
       window.localStorage.setItem('loginStatus', true);
       LoginStatus = true;
+      console.log(data);
       _setLoginStatus(true);
     } else {
       window.localStorage.setItem('loginStatus', false);

@@ -71,9 +71,10 @@ class API {
 
   login = (data, callback) => {
     axiosInstance.post('user/login', data).then(response => {
-      return performCallback(callback, true)
+      //return performCallback(callback, true)
+      callback(response,data);
     }).catch(error => {
-      errorHelper(error, "login");
+      errorHelper(error, "login")
     })
   }
 
@@ -91,6 +92,14 @@ class API {
         authorization: "Bearer " + AccessToken
       }
     }).then(response => performCallback(callback, AccessToken)).catch(error => errorHelper(error));
+  }
+
+  getUserDetails = (callback) =>{
+    axiosInstance.post('user/getProfile', {} , {
+      headers : {
+        authorization: "Bearer " + AccessToken
+      }
+    }).then(response => performCallback(callback, response)).catch(error => errorHelper(error));
   }
 
   logoutUser = (callback) => {

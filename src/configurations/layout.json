@@ -7,9 +7,17 @@
       "type": "button",
       "icon": "home",
       "controller": "/home",
-      "customTitle": "Welcome to Boiler Plate",
+      "customTitle": "Welcome",
       "isFavourite": true,
       "subMenuItems": []
+    },
+    {
+      "name": "PROFILE",
+      "type": "button",
+      "icon": "person",
+      "customTitle": "Profile",
+      "controller" : "/profile",
+      "isFavourite" : true
     },
     {
       "name": "Example",
