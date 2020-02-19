@@ -86,6 +86,41 @@ class API {
     })
   }
 
+  //Update User to add the models
+  updateUser = (data,callback) =>{
+    axiosInstance.post('user/updateProfile' ,data, {
+      headers : {
+        authorization: "Bearer " + AccessToken
+      }
+    }).then(res =>{
+       callback(res);
+    }).catch(error => {
+      errorHelper(error);
+    })
+  }
+
+  //To Start the Game Code
+  startGame = (data,callback) =>{
+       axiosInstance.post("user/startGame", data, {headers : {
+        authorization: "Bearer " + AccessToken
+      }}
+      ).then(res => callback(res))
+       .catch(error => errorHelper(error));
+  }
+
+  //Upload Document
+  uploadDocument = (data,callback) =>{
+    axiosInstance.post('upload/uploadDocument' ,data,{
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    }).then(res =>{
+      callback(res);
+    }).catch(error =>{
+      errorHelper(error)
+    })
+  }
+
   accessTokenLogin = (callback) => {
     axiosInstance.post('accessTokenLogin', {}, {
       headers: {

@@ -1,7 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import { Grid, Typography, Button, makeStyles } from '@material-ui/core';
 import { HeaderElements } from 'components';
 import { LayoutContext } from 'contexts';
+import FileIcon from '../../../images/file.png';
+import { API } from 'helpers/index';
+import { notify } from 'components/index';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +20,55 @@ const useStyles = makeStyles(theme => ({
 
 export const Home = () => {
   const classes = useStyles();
+  const [documentFile,setDocumentFile] = useState('');
+  const [isValid,setIsValid] = useState(true);
+  const errorText='Please Pick a Valid File';
+  let fileUrl = useRef('');
+  let fileIsValid;
+  const [previewUrl,setPreviewUrl] = useState();
   const { setHeaderElements, pageTitle } = useContext(LayoutContext);
+
+  const startGame = (event) =>{
+    let userData = { fileUrl: fileUrl.current};
+    API.startGame(userData , (res) =>{
+      console.log('Hopeful for a Start of Game'+ res);
+    });
+  };
+
+  const imageChangeHandler = (event) =>{
+    let pickedFile;
+    fileIsValid = isValid;
+
+    if(event.target.files && event.target.files.length === 1){
+      pickedFile = event.target.files[0];
+      setDocumentFile(pickedFile);
+      setIsValid(true);
+      fileIsValid = true;
+    }else{
+      fileIsValid = false;
+    }
+
+  };
+
+  useEffect(()=>{
+    if(!documentFile){
+      return;
+    }
+    
+    const formData = new FormData();
+    formData.append('documentFile',documentFile);
+
+    API.uploadDocument(formData, (res) =>{
+      let data ={fileUrl: res.data.data.documentFileUrl.original};
+      fileUrl.current = res.data.data.documentFileUrl.original;
+      API.updateUser(data, (res) =>{
+        setPreviewUrl(FileIcon);
+        notify('File Uploaded Successfully');
+      });
+    });
+  },[documentFile]);
+
+
   useEffect(() => {
     setHeaderElements(<HeaderElements>
       <Typography>
@@ -31,21 +82,38 @@ export const Home = () => {
       <Typography variant="h2" align="center">
         Select the Mode
       </Typography>
-     </Grid>
+    </Grid>
 
-     <div className={classes.root}>
-      <input
-        accept="file/*"
-        className={classes.input}
-        id="contained-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span">
-          Upload
-        </Button>
-      </label>
+    <div className={classes.root}>
+
+      <form noValidate>  
+        <input accept="file/*" 
+          className={classes.input} 
+          id="contained-button-file" 
+          multiple 
+          type="file" 
+          required
+          description="document file"
+          name="documentFile"
+          onChange = {imageChangeHandler}
+        />
+
+        <div>
+          <div>
+            {previewUrl && <img src={previewUrl} alt="Preview" width="200px" height="200px"/>}
+            {!previewUrl && !fileIsValid && <p>{errorText}</p>}
+          </div>
+
+          <label htmlFor="contained-button-file">
+            <Button variant="contained" color="primary" component="span">
+               Upload
+            </Button>
+          </label>
+        </div>
+        <br></br>
+        <Button fullWidth variant="contained" color="primary" className={classes.buttons} onClick={startGame}>Start</Button>
+            
+      </form>
     </div>
   </Grid>);
 };

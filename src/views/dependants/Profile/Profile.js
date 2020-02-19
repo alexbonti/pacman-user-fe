@@ -1,7 +1,7 @@
-import React, {useEffect,useContext, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import { Paper, Typography, Grid, ButtonBase, makeStyles } from '@material-ui/core';
-import { LoginContext } from 'contexts';
-import { Image } from 'components';
+//import { LoginContext } from 'contexts';
+//import { Image } from 'components';
 import { API } from 'helpers';
 import UserDemo from '../../../images/demoUser.png';
 
@@ -26,22 +26,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export const Profile = (props) => {
+export const Profile = () => {
 
   const classes = useStyles();
-  const {accessToken} = useContext(LoginContext);
+  //const {accessToken} = useContext(LoginContext);
   const headerRef = useRef();
   const matchesPlayedRef = useRef();
   const matchesWonRef = useRef();
   const highestScoreRef = useRef();
 
   useEffect(()=>{
-     API.getUserDetails((res)=>{
-       headerRef.current.innerHTML= res.data.data.customerData.firstName;
-       matchesPlayedRef.current.innerHTML = res.data.data.customerAdditionalData.matchesPlayed;
-       matchesWonRef.current.innerHTML = res.data.data.customerAdditionalData.matchesWon;
-       highestScoreRef.current.innerHTML = res.data.data.customerAdditionalData.highestScore;
-     })
+    API.getUserDetails((res)=>{
+      headerRef.current.innerHTML= res.data.data.customerData.firstName;
+      matchesPlayedRef.current.innerHTML = res.data.data.customerAdditionalData.matchesPlayed;
+      matchesWonRef.current.innerHTML = res.data.data.customerAdditionalData.matchesWon;
+      highestScoreRef.current.innerHTML = res.data.data.customerAdditionalData.highestScore;
+    });
   },[]);
   
   return(<div className={classes.root}>
@@ -69,5 +69,5 @@ export const Profile = (props) => {
       </Grid>
     </Paper>
   </div>
-);
-}
+  );
+};

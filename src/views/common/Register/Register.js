@@ -1,13 +1,14 @@
+/* eslint-disable quotes */
 /* eslint-disable linebreak-style */
 /***
  *  Created by Sanchit Dang
  ***/
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TextField, makeStyles, Typography, Button, Box, Grid, Paper } from '@material-ui/core';
 import { notify } from 'components';
-import { DevModeConfig } from 'configurations';
-import { LoginContext } from 'contexts'; 
+//import { DevModeConfig } from 'configurations';
+//import { LoginContext } from 'contexts'; 
 import { API } from 'helpers';
 
 
@@ -60,7 +61,7 @@ export const Register = () => {
     API.registerUser(registerationDetails, function(data) {
       notify("Registeration Successful");
       console.log(data);
-     });
+    });
   };
   const validationCheck = () => {
     if (emailId.length < 0 || password.length < 0 || confirmPassword.length < 0 || firstName.length < 0 || lastName.length < 0
@@ -78,7 +79,7 @@ export const Register = () => {
     if (emailPatternTest) {
       return register();
     }
-  }
+  };
 
   let content = (
     <div>
@@ -115,4 +116,4 @@ export const Register = () => {
     </div>
   );
   return content;
-}
+};

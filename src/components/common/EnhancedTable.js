@@ -206,7 +206,7 @@ export const EnhancedTable = (props) => {
           setKeys(_keys);
         } else setKeys(arrayDiff(_keys, props.options.ignoreKeys));
       else setKeys(_keys);
-    }
+    };
     if (obj !== undefined && obj !== null)
       if (obj.length > 0) {
         ignoreKeys();
@@ -282,7 +282,7 @@ export const EnhancedTable = (props) => {
                     </TableCell>);
                   })
                 }
-                </TableRow>)
+                </TableRow>);
               })}
           </TableBody>
         </Table>
@@ -362,7 +362,7 @@ export const EnhancedTable = (props) => {
               <RenderRow key={Math.random()} page={page} data={row} keys={_keys} />
               {(props.options !== undefined ? props.options.actionLocation !== "start" ? (props.options.actions !== undefined ? renderActions(obj[index]) : null) : null : null)}
             </TableRow>);
-        })
+        });
     return data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
       return (
         <TableRow key={Math.random()}>
@@ -373,14 +373,14 @@ export const EnhancedTable = (props) => {
           <RenderRow key={Math.random()} page={page} data={row} keys={_keys} />
           {(props.options !== undefined ? props.options.actionLocation !== 'start' ? (props.options.actions !== undefined ? renderActions(obj[index]) : null) : null : null)}
         </TableRow>);
-    })
-  }
+    });
+  };
 
   const renderActionHeaders = () => {
     return props.options.actions.map(value => {
       return <Heading style={props.styles !== undefined ? props.styles.heading !== undefined ? props.styles.heading : null : null} key={Math.random()} value={value.name} />;
     });
-  }
+  };
 
   const renderEmptyRows = () => {
     if (obj === undefined || obj === null)
@@ -505,7 +505,7 @@ export const EnhancedTable = (props) => {
     return content;
   }
   else
-    return <div>INVALID DATA! DATA YOU ARE SENDING IS NOT AN ARRAY OF OBJECTS</div>
+    return <div>INVALID DATA! DATA YOU ARE SENDING IS NOT AN ARRAY OF OBJECTS</div>;
 };
 
 EnhancedTable.propTypes = {
