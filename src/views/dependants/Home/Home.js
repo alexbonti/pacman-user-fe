@@ -105,7 +105,7 @@ export const Home = () => {
           </div>
 
           <label htmlFor="contained-button-file">
-            <Button variant="contained" color="primary" component="span">
+            <Button fullWidth variant="contained" color="primary" className={classes.buttons} component="span">
                Upload
             </Button>
           </label>

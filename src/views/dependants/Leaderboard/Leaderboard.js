@@ -1,0 +1,75 @@
+import React, {useEffect, useRef, useState} from 'react';
+import { Paper, Typography, Grid, ButtonBase, makeStyles } from '@material-ui/core';
+//import { LoginContext } from 'contexts';
+//import { Image } from 'components';
+import { API } from 'helpers';
+import UserDemo from '../../../images/demoUser.png';
+import { LoadingScreen } from 'components';
+import { EnhancedTable } from 'components';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+}));
+
+export const LeaderBoard = () => {
+
+  const classes = useStyles();
+  //const {accessToken} = useContext(LoginContext);
+  const headerRef = useRef();
+  const matchesPlayedRef = useRef();
+  const matchesWonRef = useRef();
+  const highestScoreRef = useRef();
+  let [isLoading,setIsLoading] = useState(true);
+
+  useEffect(()=>{
+    API.getLeaderBoard((res)=>{
+      console.log(res);
+      setIsLoading(false);
+    });
+  },[]);
+  
+  return(<div className={classes.root}>
+    {isLoading && <LoadingScreen loadingText="Fetching Your Records"></LoadingScreen>}
+    <Paper className={classes.paper}>
+      <Grid container spacing={2}>
+        <Grid item>
+          <ButtonBase className={classes.image}>
+            <img className={classes.img} alt="complex" src={UserDemo} />
+          </ButtonBase>
+        </Grid>
+        <Grid item xs={12} sm container>
+          <Grid item xs container direction="column" spacing={2}>
+            <Grid item xs>
+              <Typography gutterBottom variant="subtitle1" ref={headerRef}/>
+
+              <Typography variant="body2" gutterBottom ref={matchesPlayedRef}/>
+
+              <Typography variant="body2" color="textSecondary" ref={matchesWonRef}/>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Typography variant="subtitle1" ref={highestScoreRef}/>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Paper>
+  </div>
+  );
+};

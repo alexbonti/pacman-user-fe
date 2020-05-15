@@ -1,9 +1,10 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { Paper, Typography, Grid, ButtonBase, makeStyles } from '@material-ui/core';
 //import { LoginContext } from 'contexts';
 //import { Image } from 'components';
 import { API } from 'helpers';
 import UserDemo from '../../../images/demoUser.png';
+import { LoadingScreen } from 'components';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,6 +35,7 @@ export const Profile = () => {
   const matchesPlayedRef = useRef();
   const matchesWonRef = useRef();
   const highestScoreRef = useRef();
+  let [isLoading,setIsLoading] = useState(true);
 
   useEffect(()=>{
     API.getUserDetails((res)=>{
@@ -41,10 +43,12 @@ export const Profile = () => {
       matchesPlayedRef.current.innerHTML = res.data.data.customerAdditionalData.matchesPlayed;
       matchesWonRef.current.innerHTML = res.data.data.customerAdditionalData.matchesWon;
       highestScoreRef.current.innerHTML = res.data.data.customerAdditionalData.highestScore;
+      setIsLoading(false);
     });
   },[]);
   
   return(<div className={classes.root}>
+    {isLoading && <LoadingScreen loadingText="Fetching Your Profile"></LoadingScreen>}
     <Paper className={classes.paper}>
       <Grid container spacing={2}>
         <Grid item>

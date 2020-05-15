@@ -1,6 +1,3 @@
-/***
- *  Created by Sanchit Dang
- * */
 
 import React, { useEffect, useState } from 'react';
 import { Snackbar } from '@material-ui/core';

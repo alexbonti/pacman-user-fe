@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { Editor } from '@tinymce/tinymce-react';
 import { APIKeys } from 'configurations';
 
-/**
- * Created by Sanchit Dang.
- * This Editor is a wrapper on TinyMCE-React (https://github.com/tinymce/tinymce-react)
- * Use apiKeys from configurations to change apiKey
-*/
+
 export const EnhancedEditor = (props) => {
   const [_content, _setContent] = useState('');
   const [editorID, setEditorID] = useState();

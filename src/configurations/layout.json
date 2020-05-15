@@ -20,11 +20,11 @@
       "isFavourite" : true
     },
     {
-      "name": "Example",
+      "name": "LEADERBOARD",
       "type": "button",
       "icon": "code",
-      "controller": "/examples",
-      "customTitle": "Example Code File",
+      "controller": "/leaderboard",
+      "customTitle": "LeaderBoard",
       "isFavourite": true,
       "subMenuItems": []
     },

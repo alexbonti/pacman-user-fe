@@ -5,6 +5,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     height: '100%',
     width: '100%'
+  },
+  loadingCircle:{
+
+  },
+  loadingText:{
+    fontSize:'24px'
   }
 }));
 export const LoadingScreen = (props) => {

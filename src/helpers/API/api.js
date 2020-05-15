@@ -137,6 +137,10 @@ class API {
     }).then(response => performCallback(callback, response)).catch(error => errorHelper(error));
   }
 
+  getLeaderBoard = (callback) =>{
+    axiosInstance.get('user/getLeaderBoard').then(response => performCallback(callback, response)).catch(error => errorHelper(error));
+  }
+
   logoutUser = (callback) => {
     logout();
     performCallback(callback);
