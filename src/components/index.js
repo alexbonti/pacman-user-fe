@@ -13,6 +13,7 @@ import { HeaderElements } from './helpers/HeaderElements';
 import { EnhancedEditor } from './common/EnhancedEditor';
 import { EnhancedDrawer } from './common/EnhancedDrawer';
 import { LoginCheck } from './helpers/LoginCheck.js';
+import { OpenSelect } from './dependants/OpenSelect';
 
 export {
   EnhancedNotification as Notification,
@@ -29,5 +30,6 @@ export {
   HeaderElements,
   EnhancedEditor,
   EnhancedDrawer,
-  LoginCheck
+  LoginCheck,
+  OpenSelect
 };

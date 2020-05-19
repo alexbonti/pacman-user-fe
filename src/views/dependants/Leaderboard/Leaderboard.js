@@ -31,45 +31,32 @@ const useStyles = makeStyles(theme => ({
 export const LeaderBoard = () => {
 
   const classes = useStyles();
-  //const {accessToken} = useContext(LoginContext);
-  const headerRef = useRef();
-  const matchesPlayedRef = useRef();
-  const matchesWonRef = useRef();
-  const highestScoreRef = useRef();
+  
   let [isLoading,setIsLoading] = useState(true);
+  let records = [];
+  const [tableTitle,setTableTitle] = useState('Leaderboard');
+  const [battleResults,setBattleResults] = useState(records);
 
   useEffect(()=>{
     API.getLeaderBoard((res)=>{
-      console.log(res);
+      let responseArray = res.data.data.battleResults;
+      let arrayTemp=[];
+
+      for(let i=0;i<responseArray.length;i++){
+        arrayTemp.push(responseArray[i]);
+      }
+
+      setBattleResults(arrayTemp);
+      // setBattleResults(res.data);
       setIsLoading(false);
     });
   },[]);
   
   return(<div className={classes.root}>
     {isLoading && <LoadingScreen loadingText="Fetching Your Records"></LoadingScreen>}
-    <Paper className={classes.paper}>
-      <Grid container spacing={2}>
-        <Grid item>
-          <ButtonBase className={classes.image}>
-            <img className={classes.img} alt="complex" src={UserDemo} />
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" ref={headerRef}/>
 
-              <Typography variant="body2" gutterBottom ref={matchesPlayedRef}/>
-
-              <Typography variant="body2" color="textSecondary" ref={matchesWonRef}/>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" ref={highestScoreRef}/>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Paper>
+    <EnhancedTable data={battleResults} title={tableTitle}></EnhancedTable>
+    
   </div>
   );
 };

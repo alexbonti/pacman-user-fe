@@ -1,6 +1,5 @@
 /***
  *  Created by Nirav Bhimani
- *  Contributors : Sanchit Dang *12/08/19*
  ***/
 
 import React, { useState, useContext, useEffect } from 'react';
