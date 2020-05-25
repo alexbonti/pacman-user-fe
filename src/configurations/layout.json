@@ -48,8 +48,9 @@
   },
   "theme": {
     "colors": {
-      "primary": "#039be5",
-      "secondary": "#c62828"
+      "primary": "#ff9800", 
+      "secondary": "#c62828",
+      "tertiary" : "#00acc1"
     },
     "appBarElevation": 1
   }

@@ -1,12 +1,10 @@
 /* eslint-disable quotes */
 /* eslint-disable linebreak-style */
-/***
- *  Created by Sanchit Dang
- ***/
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TextField, makeStyles, Typography, Button, Box, Grid, Paper } from '@material-ui/core';
-import { notify } from 'components';
+import { TextField, makeStyles, Typography, Button, Box, Grid, Paper, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { notify, Card, RegularButton, CustomInput } from "components";
+import { LayoutConfig } from "configurations";
 //import { DevModeConfig } from 'configurations';
 //import { LoginContext } from 'contexts'; 
 import { API } from 'helpers';
@@ -15,21 +13,21 @@ import { API } from 'helpers';
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(6),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: theme.spacing(3)
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(3),
+    backgroundColor: "#242438d4"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   registerBox: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(2)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 2)
   },
   buttons: {
     marginTop: theme.spacing(1)
@@ -39,6 +37,62 @@ const useStyles = makeStyles(theme => ({
     bottom: "1vh"
   }
 }));
+let applicationTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main:
+        LayoutConfig.theme !== undefined
+          ? LayoutConfig.theme.colors !== undefined
+            ? LayoutConfig.theme.colors.primary !== undefined
+              ? LayoutConfig.theme.colors.primary
+              : null
+            : null
+          : null
+    },
+    secondary: {
+      main:
+        LayoutConfig.theme !== undefined
+          ? LayoutConfig.theme.colors !== undefined
+            ? LayoutConfig.theme.colors.secondary !== undefined
+              ? LayoutConfig.theme.colors.secondary
+              : null
+            : null
+          : null
+    }
+  },
+  typography: {
+    h6: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 18,
+      color: "white"
+    },
+    body1: {
+      fontFamily: "Arial Unicode MS, Helvetica, sans-serif",
+      fontSize: 16,
+      color: "#d0d0d0"
+    },
+    body2: { fontFamily: "Helvetica, sans-serif", fontSize: 12 },
+    caption: {
+      color: "#d0d0d0 ",
+      fontSize: "12px ",
+      fontFamily: "Helvetica, sans-serif"
+    },
+    h5: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 21,
+      color: "#00acc1"
+    },
+    subtitle1: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 10,
+      color: "white"
+    }
+  }
+});
 
 export const Register = () => {
   const classes = useStyles();
@@ -82,7 +136,7 @@ export const Register = () => {
   };
 
   let content = (
-    <div>
+    <MuiThemeProvider theme={applicationTheme}>
       <Grid
         container
         spacing={0}
@@ -90,18 +144,26 @@ export const Register = () => {
       >
         <Grid className={classes.registerBox} item xs={10} sm={6} md={4} lg={3} xl={2}>
           <Paper className={classes.paper}>
-            <Typography component="h1" variant="h5">
-              {pageHeading}
-            </Typography>
-            <form noValidate>
-              <TextField variant="outlined" margin="normal" required fullWidth id="firstName" label="First Name" name="firstName" autoComplete="email" onChange={e => setFirstName(e.target.value)} autoFocus />
-              <TextField variant="outlined" margin="normal" required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="email" onChange={e => setLastName(e.target.value)} />
-              <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" onChange={e => setEmailId(e.target.value)} />
-              <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" onChange={e => setPassword(e.target.value)} autoComplete="current-password" />
-              <TextField variant="outlined" margin="normal" required fullWidth name="confirmPassword" label="Confirm Password" type="password" id="confirmPassword" onChange={e => setConfirmPassword(e.target.value)} autoComplete="current-password" />
-              <Button fullWidth variant="contained" color="primary" className={classes.buttons} onClick={validationCheck}>Register</Button>
-              <Button fullWidth variant="contained" color="primary" className={classes.buttons} component={Link} to='/login'>Back</Button>
-            </form>
+            <Grid container justify="center">
+              <Grid item xs={11}>
+                <Typography component="h1" variant="h5">
+                  {pageHeading}
+                </Typography>
+              </Grid>
+        
+            
+              <Grid item xs={11}>
+                <form noValidate>
+                  <TextField variant="outlined" margin="normal" required fullWidth id="firstName" label="First Name" name="firstName" autoComplete="email" onChange={e => setFirstName(e.target.value)} autoFocus />
+                  <TextField variant="outlined" margin="normal" required fullWidth id="lastName" label="Last Name" name="lastName" autoComplete="email" onChange={e => setLastName(e.target.value)} />
+                  <TextField variant="outlined" margin="normal" required fullWidth id="email" label="Email Address" name="email" autoComplete="email" onChange={e => setEmailId(e.target.value)} />
+                  <TextField variant="outlined" margin="normal" required fullWidth name="password" label="Password" type="password" id="password" onChange={e => setPassword(e.target.value)} autoComplete="current-password" />
+                  <TextField variant="outlined" margin="normal" required fullWidth name="confirmPassword" label="Confirm Password" type="password" id="confirmPassword" onChange={e => setConfirmPassword(e.target.value)} autoComplete="current-password" />
+                  <Button fullWidth variant="contained" color="primary" className={classes.buttons} onClick={validationCheck}>Register</Button>
+                  <Button fullWidth variant="contained" color="primary" className={classes.buttons} component={Link} to='/login'>Back</Button>
+                </form>
+              </Grid>
+            </Grid>
           </Paper>
         </Grid>
 
@@ -113,7 +175,7 @@ export const Register = () => {
           </Box>
         </Grid>
       </Grid>
-    </div>
+    </MuiThemeProvider>
   );
   return content;
 };

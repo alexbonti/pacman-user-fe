@@ -7,6 +7,11 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 const useStyles = makeStyles(theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.dark
+    }
+  },
   root: {
     width: '100%',
     marginTop: theme.spacing(0),
@@ -16,8 +21,18 @@ const useStyles = makeStyles(theme => ({
     overflow: 'auto',
     maxHeight: 407
   },
+  tableHead:{
+    color: '#ff9800',
+    fontSize: '22px',
+    fontWeight: '600'
+  },
   table: {
     minWidth: 650,
+    backgroundColor: '#242438d4',
+    border: '2px double #00acc1'
+  },
+  tablePagination :{
+    backgroundColor: '#00acc1'
   },
   spacer: {
     flex: '1 1 100%',
@@ -214,7 +229,7 @@ export const EnhancedTable = (props) => {
   }, [obj, props.options]);
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, (obj !== undefined && obj !== null ? obj.length : 0) - page * rowsPerPage);
   const Heading = (props) => {
-    return (<TableCell style={props.styles !== undefined ? props.styles.tableCell !== undefined ? props.styles.tableCell : null : null} align={(props.align !== undefined ? props.align : "left")}>{props.value}</TableCell>);
+    return (<TableCell className={classes.tableHead} style={props.styles !== undefined ? props.styles.tableCell !== undefined ? props.styles.tableCell : null : null} align={(props.align !== undefined ? props.align : "left")}>{props.value}</TableCell>);
   };
   const renderHeader = () => {
     return _keys.map((key) => {
@@ -472,6 +487,7 @@ export const EnhancedTable = (props) => {
         {props.options !== undefined ? props.options.disablePagination ? null :
           <TablePagination
             component="div"
+            className={classes.tablePagination}
             style={props.styles !== undefined ? props.styles.tablePagination !== undefined ? props.styles.tablePagination : null : null}
             rowsPerPageOptions={rowsPerPageOptions}
             rowsPerPage={rowsPerPage}
@@ -487,6 +503,7 @@ export const EnhancedTable = (props) => {
           /> :
           <TablePagination
             component="div"
+            className={classes.tablePagination}
             style={props.styles !== undefined ? props.styles.tablePagination !== undefined ? props.styles.tablePagination : null : null}
             rowsPerPageOptions={rowsPerPageOptions}
             rowsPerPage={rowsPerPage}

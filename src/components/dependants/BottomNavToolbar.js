@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     position: 'fixed',
-    bottom: '0'
+    bottom: '0',
+    backgroundColor: 'transparent'
   },
   iOSPadding: {
     height: iOS ? theme.spacing(2) : 0

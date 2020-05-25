@@ -14,6 +14,8 @@ import { EnhancedEditor } from './common/EnhancedEditor';
 import { EnhancedDrawer } from './common/EnhancedDrawer';
 import { LoginCheck } from './helpers/LoginCheck.js';
 import { OpenSelect } from './dependants/OpenSelect';
+import {RegularButton} from "components/dependants/CustomButtons/Button"
+import {CustomInput} from "components/dependants/CustomInput/CustomInput"
 
 export {
   EnhancedNotification as Notification,
@@ -31,5 +33,7 @@ export {
   EnhancedEditor,
   EnhancedDrawer,
   LoginCheck,
-  OpenSelect
+  OpenSelect,
+  RegularButton,
+  CustomInput
 };

@@ -6,10 +6,18 @@ import { API } from 'helpers';
 import UserDemo from '../../../images/demoUser.png';
 import { LoadingScreen } from 'components';
 import { EnhancedTable } from 'components';
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { LayoutConfig } from "configurations";
 
 const useStyles = makeStyles(theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.common.dark
+    }
+  },
   root: {
     flexGrow: 1,
+    margin: '20px'
   },
   paper: {
     padding: theme.spacing(2),
@@ -27,6 +35,65 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '100%',
   },
 }));
+
+
+let applicationTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main:
+        LayoutConfig.theme !== undefined
+          ? LayoutConfig.theme.colors !== undefined
+            ? LayoutConfig.theme.colors.primary !== undefined
+              ? LayoutConfig.theme.colors.primary
+              : null
+            : null
+          : null
+    },
+    secondary: {
+      main:
+        LayoutConfig.theme !== undefined
+          ? LayoutConfig.theme.colors !== undefined
+            ? LayoutConfig.theme.colors.secondary !== undefined
+              ? LayoutConfig.theme.colors.secondary
+              : null
+            : null
+          : null
+    }
+  },
+  typography: {
+    h6: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 18,
+      color: "white"
+    },
+    body1: {
+      fontFamily: "Arial Unicode MS, Helvetica, sans-serif",
+      fontSize: 16,
+      color: "#d0d0d0"
+    },
+    body2: { fontFamily: "Helvetica, sans-serif", fontSize: 12 },
+    caption: {
+      color: "#d0d0d0 ",
+      fontSize: "12px ",
+      fontFamily: "Helvetica, sans-serif"
+    },
+    h5: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 21,
+      color: "#00acc1"
+    },
+    subtitle1: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 10,
+      color: "white"
+    }
+  }
+});
+
 
 export const LeaderBoard = () => {
 
@@ -51,12 +118,18 @@ export const LeaderBoard = () => {
       setIsLoading(false);
     });
   },[]);
-  
-  return(<div className={classes.root}>
-    {isLoading && <LoadingScreen loadingText="Fetching Your Records"></LoadingScreen>}
 
-    <EnhancedTable data={battleResults} title={tableTitle}></EnhancedTable>
-    
-  </div>
+
+  
+  return( <MuiThemeProvider theme={applicationTheme}>
+    <div className={classes.root}>
+      {isLoading && <LoadingScreen loadingText="Fetching Your Records"></LoadingScreen>}
+       
+        
+      <EnhancedTable data={battleResults} title={tableTitle}></EnhancedTable>
+        
+     
+    </div>
+  </MuiThemeProvider>
   );
 };

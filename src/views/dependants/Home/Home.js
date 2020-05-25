@@ -10,7 +10,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { LayoutConfig } from "configurations";
 
 
 const useStyles = makeStyles(theme => ({
@@ -31,6 +32,63 @@ const useStyles = makeStyles(theme => ({
     minWidth: 120,
   }
 }));
+
+let applicationTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main:
+        LayoutConfig.theme !== undefined
+          ? LayoutConfig.theme.colors !== undefined
+            ? LayoutConfig.theme.colors.primary !== undefined
+              ? LayoutConfig.theme.colors.primary
+              : null
+            : null
+          : null
+    },
+    secondary: {
+      main:
+        LayoutConfig.theme !== undefined
+          ? LayoutConfig.theme.colors !== undefined
+            ? LayoutConfig.theme.colors.secondary !== undefined
+              ? LayoutConfig.theme.colors.secondary
+              : null
+            : null
+          : null
+    }
+  },
+  typography: {
+    h6: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 18,
+      color: "white"
+    },
+    body1: {
+      fontFamily: "Arial Unicode MS, Helvetica, sans-serif",
+      fontSize: 16,
+      color: "#d0d0d0"
+    },
+    body2: { fontFamily: "Helvetica, sans-serif", fontSize: 12 },
+    caption: {
+      color: "#d0d0d0 ",
+      fontSize: "12px ",
+      fontFamily: "Helvetica, sans-serif"
+    },
+    h5: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 44,
+      color: "#00acc1"
+    },
+    subtitle1: {
+      fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+      fontWeight: "bold",
+      fontSize: 10,
+      color: "white"
+    }
+  }
+});
 
 
 export const Home = () => {
@@ -135,11 +193,11 @@ export const Home = () => {
     </HeaderElements>);
   }, [pageTitle, setHeaderElements]);
   
-  return ( <React.Fragment>
+  return (  <MuiThemeProvider theme={applicationTheme}>
     {isLoading && <LoadingScreen loadingText="Fetching user models"></LoadingScreen>}
     <Grid container justify='flex-start' direction='column' alignItems='center'>
       <Grid item xs={12} xl={2} lg={4} md={6} sm={8}>
-        <Typography variant="h2" align="center">
+        <Typography variant="h5" align="center">
         Select the Model
         </Typography>
       </Grid>
@@ -190,7 +248,7 @@ export const Home = () => {
           <div>
             <div>
               {previewUrl && <img src={previewUrl} alt="Preview" width="200px" height="200px"/>}
-              {!previewUrl && !fileIsValid && <p>{errorText}</p>}
+              {!previewUrl && !fileIsValid && <p style={{color:'#ff9800'}}>{errorText}</p>}
             </div>
 
             <label htmlFor="contained-button-file">
@@ -205,6 +263,6 @@ export const Home = () => {
         </form>
       </div>
     </Grid>
-  </React.Fragment>);
+  </MuiThemeProvider>);
   
 };
