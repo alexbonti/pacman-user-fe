@@ -106,9 +106,9 @@ export const Home = () => {
 
 
   //Select Drop Down
-  const [modelSelected, setModelSelected] = React.useState('');
+  const [modelSelected, setModelSelected] = useState('');
   const [modelUploaded, setModelUploaded] = useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
     setModelSelected(event.target.value);
@@ -140,11 +140,17 @@ export const Home = () => {
   },[modelUploaded]);
 
   const startGame = (event) =>{
+
+    if(modelSelected ===''){
+      notify('Select a model first to start');
+      return;
+    }
    
     let userData = { fileUrl: modelSelected};
 
     API.startGame(userData , (res) =>{
       console.log('Hopeful for a Start of Game'+ res);
+      notify('Finding a match');
     });
   };
 
