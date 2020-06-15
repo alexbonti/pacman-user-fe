@@ -1,5 +1,5 @@
 {
-  "headerWelcomeText": "Hello WORLD!",
+  "headerWelcomeText": "",
   "landingPage": "/home",
   "menuItems": [
     {
@@ -7,16 +7,24 @@
       "type": "button",
       "icon": "home",
       "controller": "/home",
-      "customTitle": "Welcome to Boiler Plate",
+      "customTitle": "Welcome",
       "isFavourite": true,
       "subMenuItems": []
     },
     {
-      "name": "Example",
+      "name": "PROFILE",
+      "type": "button",
+      "icon": "person",
+      "customTitle": "Profile",
+      "controller" : "/profile",
+      "isFavourite" : true
+    },
+    {
+      "name": "LEADERBOARD",
       "type": "button",
       "icon": "code",
-      "controller": "/examples",
-      "customTitle": "Example Code File",
+      "controller": "/leaderboard",
+      "customTitle": "LeaderBoard",
       "isFavourite": true,
       "subMenuItems": []
     },
@@ -40,8 +48,9 @@
   },
   "theme": {
     "colors": {
-      "primary": "#039be5",
-      "secondary": "#c62828"
+      "primary": "#ff9800", 
+      "secondary": "#c62828",
+      "tertiary" : "#00acc1"
     },
     "appBarElevation": 1
   }

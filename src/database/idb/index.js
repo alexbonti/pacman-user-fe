@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import IDBService from './service';
 import { DevModeConfig } from 'configurations';
 var CONFIG = require('./config.json');

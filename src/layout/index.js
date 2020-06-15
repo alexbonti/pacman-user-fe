@@ -6,7 +6,7 @@ import { LayoutConfig } from 'configurations';
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   header: {
     display: 'flex',
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     height: '100vh',
-    overflow: 'auto',
+    overflow: 'auto'
   },
   mobileContent: {
     '-webkit-overflow-scrolling': 'touch',
@@ -35,13 +35,46 @@ export const Layout = (props) => {
 
   let applicationTheme = createMuiTheme({
     palette: {
+      type: "dark",
       primary: {
         main: LayoutConfig.theme !== undefined ? LayoutConfig.theme.colors !== undefined ? LayoutConfig.theme.colors.primary !== undefined ? LayoutConfig.theme.colors.primary : null : null : null
       },
       secondary: {
         main: LayoutConfig.theme !== undefined ? LayoutConfig.theme.colors !== undefined ? LayoutConfig.theme.colors.secondary !== undefined ? LayoutConfig.theme.colors.secondary : null : null : null
+      },
+      
+    },
+    typography: {
+      h6: {
+        fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+        fontWeight: "bold",
+        fontSize: 18,
+        color: "white"
+      },
+      body1: {
+        fontFamily: "Arial Unicode MS, Helvetica, sans-serif",
+        fontSize: 16,
+        color: "#d0d0d0"
+      },
+      body2: { fontFamily: "Helvetica, sans-serif", fontSize: 12 },
+      caption: {
+        color: "#d0d0d0 ",
+        fontSize: "12px ",
+        fontFamily: "Helvetica, sans-serif"
+      },
+      h5: {
+        fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+        fontWeight: "bold",
+        fontSize: 21,
+        color: "#00acc1"
+      },
+      subtitle1: {
+        fontFamily: "Arial Rounded MT, Helvetica, sans-serif",
+        fontWeight: "bold",
+        fontSize: 10,
+        color: "white"
       }
-    }
+    },
   });
   let isItDesktop = useMediaQuery('(min-width:600px) and (min-height:600px)');
   let content = (

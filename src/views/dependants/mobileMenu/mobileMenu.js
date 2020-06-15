@@ -20,8 +20,8 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '5vw'
   },
   menuTitle: {
-    paddingTop: "5vh",
-    paddingBottom: "5vh",
+    paddingTop: '5vh',
+    paddingBottom: '5vh',
     backgroundColor: theme.palette.primary.main,
     color: 'white',
     boxShadow: '0 1px rgba(76,45,45,0.80)'
@@ -29,13 +29,13 @@ const useStyles = makeStyles(theme => ({
   logoutButton: {
     backgroundColor: theme.palette.secondary.main,
     color: 'white',
-    paddingLeft: "5vw",
-    paddingRight: "5vw"
+    paddingLeft: '5vw',
+    paddingRight: '5vw'
   },
   listItem: {
     backgroundColor: theme.palette.background.paper,
-    paddingLeft: "5vw",
-    paddingRight: "5vw"
+    paddingLeft: '5vw',
+    paddingRight: '5vw'
   }
 }));
 
@@ -48,7 +48,7 @@ export const MobileMenu = () => {
   let logoutButton = (data, key) => {
     return (<div key={'menu_button' + key}>
       {items.length > 0 ? <Divider /> : null}
-      <ListItem onClick={() => { API.logoutUser() }} button className={classes.logoutButton} >
+      <ListItem onClick={() => { API.logoutUser();}} button className={classes.logoutButton} >
         <Icon>
           {data.icon !== undefined ? data.icon : 'logout'}
         </Icon>

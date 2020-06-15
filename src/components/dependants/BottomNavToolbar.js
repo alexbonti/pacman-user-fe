@@ -1,6 +1,5 @@
 /***
  *  Created by Nirav Bhimani
- *  Contributors : Sanchit Dang *12/08/19*
  ***/
 
 import React, { useState, useContext, useEffect } from 'react';
@@ -16,7 +15,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     position: 'fixed',
-    bottom: '0'
+    bottom: '0',
+    backgroundColor: 'transparent'
   },
   iOSPadding: {
     height: iOS ? theme.spacing(2) : 0

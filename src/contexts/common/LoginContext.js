@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /***
  *  Created by Sanchit Dang
  ***/
@@ -42,6 +43,7 @@ export const LoginProvider = props => {
     if (data === true) {
       window.localStorage.setItem('loginStatus', true);
       LoginStatus = true;
+      console.log(data);
       _setLoginStatus(true);
     } else {
       window.localStorage.setItem('loginStatus', false);
@@ -49,6 +51,7 @@ export const LoginProvider = props => {
       _setLoginStatus(false);
     }
   };
+  
   const logoutUser = async (init) => {
     if (init instanceof Function) {
       init();

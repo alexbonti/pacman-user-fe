@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     marginLeft: theme.spacing(1)
   }
-}))
+}));
 
 export const Example = () => {
   const classes = useStyles();
