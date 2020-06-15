@@ -3,7 +3,8 @@
   "version": "0.0.1-beta",
   "private": true,
   "engines": {
-    "node": "10.*"
+    "node": "10.*",
+    "npm" : "6.*"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.11",
