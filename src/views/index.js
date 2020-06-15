@@ -6,7 +6,7 @@ import { Home } from './dependants/Home/Home';
 import { MobileMenu } from './dependants/mobileMenu/mobileMenu';
 import { Example } from './dependants/Example/Example';
 import { Profile } from './dependants/Profile/Profile';
-import { LeaderBoard } from './dependants/LeaderBoard/LeaderBoard';
+// import { LeaderBoard } from './dependants/LeaderBoard/LeaderBoard';
 
 export {
   Example,
@@ -16,5 +16,5 @@ export {
   MobileMenu,
   FourOFour,
   Profile,
-  LeaderBoard
+  // LeaderBoard
 };
