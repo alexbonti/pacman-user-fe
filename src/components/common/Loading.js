@@ -44,6 +44,8 @@ export const LoadingScreen = (props) => {
       <div className={classes.pacman___div_nth_child_2}></div>
       <div className={classes.pacman___div_nth_child_3}></div>
     </div>
+    
+
   </Grid >);
 };
 

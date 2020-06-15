@@ -122,13 +122,10 @@ export const LeaderBoard = () => {
 
   
   return( <MuiThemeProvider theme={applicationTheme}>
-    <div className={classes.root}>
-      {isLoading && <LoadingScreen loadingText="Fetching Your Records"></LoadingScreen>}
-       
-        
-      <EnhancedTable data={battleResults} title={tableTitle}></EnhancedTable>
-        
+    {isLoading && <LoadingScreen loadingText="Fetching Your Records"></LoadingScreen>}
      
+    <div className={classes.root}>    
+      <EnhancedTable data={battleResults} title={tableTitle}></EnhancedTable>
     </div>
   </MuiThemeProvider>
   );

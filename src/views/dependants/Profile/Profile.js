@@ -125,9 +125,8 @@ export const Profile = () => {
   },[]);
   
   return(<MuiThemeProvider theme={applicationTheme}>
-    <div className={classes.root}>
-      {isLoading && <LoadingScreen loadingText="Fetching Your Profile"></LoadingScreen>}
-      
+    {isLoading && <LoadingScreen loadingText="Fetching Your Profile"></LoadingScreen>}
+    <div className={classes.root}>  
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
        
