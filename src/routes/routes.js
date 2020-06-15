@@ -27,7 +27,7 @@ export const AppRoutes = (props) => {
       <Route exact path='/menu' render={() => ((loginStatus === false ? <Redirect to={{ pathname: '/login' }}  {...props} /> : <Layout> <MobileMenu  {...props} /></Layout>))} />
       <Route exact path='/examples' render={() => ((loginStatus === false ? <Redirect to={{ pathname: '/login' }}  {...props} /> : <Layout> <Example  {...props} /></Layout>))} />
 
-      <Route exact path='/leaderboard' render={() => ((loginStatus === false ? <Redirect to={{ pathname: '/login' }}  {...props} /> : <Layout> <LeaderBoard  {...props} /></Layout>))} />
+      {/* <Route exact path='/leaderboard' render={() => ((loginStatus === false ? <Redirect to={{ pathname: '/login' }}  {...props} /> : <Layout> <LeaderBoard  {...props} /></Layout>))} /> */}
 
       <Route exact path="/profile" render={() => ((loginStatus === false ? <Redirect to={{pathname :'/login'}} {...props} /> : <Layout> <Profile {...props} /></Layout> ))} />
       <Route render={() => ((loginStatus === false ? <Redirect to={{ pathname: '/login' }}  {...props} /> : <Layout><FourOFour  {...props} /></Layout>))} />
