@@ -95,7 +95,7 @@ let applicationTheme = createMuiTheme({
 });
 
 
-export const LeaderBoard = () => {
+export const Leaderboard = () => {
 
   const classes = useStyles();
   
