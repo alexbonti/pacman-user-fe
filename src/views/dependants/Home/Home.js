@@ -186,6 +186,7 @@ export const Home = () => {
         setPreviewUrl(FileIcon);
         notify('File Uploaded Successfully');
         // window.location.href = "/home";
+        setModelUploaded('new');
       });
     });
   },[documentFile]);
