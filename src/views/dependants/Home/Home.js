@@ -185,7 +185,7 @@ export const Home = () => {
       API.updateUser(data, (res) =>{
         setPreviewUrl(FileIcon);
         notify('File Uploaded Successfully');
-        // window.location.href = "/home";
+        window.location.href = "/home";
         setModelUploaded('new');
       });
     });
