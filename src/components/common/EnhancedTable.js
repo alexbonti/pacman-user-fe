@@ -6,6 +6,7 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 const useStyles = makeStyles(theme => ({
   '@global': {
     body: {
@@ -313,11 +314,13 @@ export const EnhancedTable = (props) => {
         </>);
       }));
   };
+
+  //Render the Highlighs as play button here
   const RenderRow = (props) => {
     return props.keys.map((key) => {
       return (<TableCell style={props.styles !== undefined ? props.styles.tableCell !== undefined ? props.styles.tableCell : null : null} key={Math.random()}>
         <Typography varient="body1">
-          {Array.isArray(props.data[key]) ? breakObject(props.data[key]) : String(props.data[key])}
+          {Array.isArray(props.data[key]) ? breakObject(props.data[key]) : key == "Highlights" ? <a href={String(props.data[key])} style={{color:'white', textAlign:'center', fontSize:'17px'}}><PlayCircleOutlineIcon></PlayCircleOutlineIcon></a>: String(props.data[key])}
         </Typography>
       </TableCell>);
     });
@@ -379,6 +382,7 @@ export const EnhancedTable = (props) => {
             </TableRow>);
         });
     return data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => {
+      //Important Manipulation Step
       return (
         <TableRow key={Math.random()}>
           {(props.options !== undefined ? props.options.selector ? (props.options.toolbarActions !== undefined ? <TableCell style={props.styles !== undefined ? props.styles.tableCell !== undefined ? props.styles.tableCell : null : null} key={index + "select"}><Selector
