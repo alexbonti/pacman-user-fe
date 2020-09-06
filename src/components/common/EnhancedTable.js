@@ -320,7 +320,7 @@ export const EnhancedTable = (props) => {
     return props.keys.map((key) => {
       return (<TableCell style={props.styles !== undefined ? props.styles.tableCell !== undefined ? props.styles.tableCell : null : null} key={Math.random()}>
         <Typography varient="body1">
-          {Array.isArray(props.data[key]) ? breakObject(props.data[key]) : key == "Highlights" ? <a href={String(props.data[key])} style={{color:'white', textAlign:'center', fontSize:'17px'}}><PlayCircleOutlineIcon></PlayCircleOutlineIcon></a>: String(props.data[key])}
+          {Array.isArray(props.data[key]) ? breakObject(props.data[key]) : key == "Highlights" ? <><video src={String(props.data[key])} controls></video><br></br><a href={String(props.data[key])} style={{color:'white', textAlign:'center', fontSize:'17px'}}>Download Highlights</a></>: String(props.data[key])}
         </Typography>
       </TableCell>);
     });
