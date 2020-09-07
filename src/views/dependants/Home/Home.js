@@ -12,6 +12,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { LayoutConfig } from "configurations";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 const useStyles = makeStyles(theme => ({
@@ -109,10 +111,22 @@ export const Home = () => {
   const [modelSelected, setModelSelected] = useState('');
   const [modelUploaded, setModelUploaded] = useState('');
   const [open, setOpen] = useState(false);
+  const [checked,setChecked] = useState({
+    checkedA: false
+  });
 
   const handleChange = (event) => {
     setModelSelected(event.target.value);
     console.log(modelSelected+ "is selected by user");
+  };
+
+  const handleChecked = (event) => {
+    // setChecked({ ...checked, [event.target.name]: event.target.checked });
+    // console.log(event.target.checked);
+    console.log(checked);
+    setChecked(checked =>({checkedA: !checked.checkedA}));
+    console.log(checked);
+    console.log("***********************");
   };
 
   const handleClose = () => {
@@ -146,7 +160,10 @@ export const Home = () => {
       return;
     }
    
-    let userData = { fileUrl: modelSelected};
+    let demoMode = checked.checkedA;
+    let userData = { fileUrl: modelSelected, demoMode: demoMode};
+    
+    console.log(userData);
 
     API.startGame(userData , (res) =>{
       console.log('Hopeful for a Start of Game'+ res);
@@ -265,6 +282,18 @@ export const Home = () => {
             </label>
           </div>
           <br></br>
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={checked.checkedA}
+                onChange={handleChecked}
+                name="checked"
+                color="primary"
+              />
+            }
+            label="Test Against Demo User"
+          />
           <Button fullWidth variant="contained" color="primary" className={classes.buttons} onClick={startGame}>Start</Button>
             
         </form>
